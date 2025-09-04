@@ -1,6 +1,6 @@
 import pygame as pg
 from utils import * 
-from Clases import Tank
+from Clases import Tank, Ammo
 
 pg.init()
 screen = pg.display.set_mode((W, H))
@@ -16,7 +16,9 @@ while game:
     screen.fill(BLANCO)
     tank.draw(screen)
     tank.move()
-    tank.shoot(screen)
+    tank.shoot()
+    mun = Ammo(tank.pos_x, tank.pos_y)
+    mun.shot()
     
     pg.display.flip()
 

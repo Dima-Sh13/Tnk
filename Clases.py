@@ -28,14 +28,22 @@ class Tank():
         if teclas[pg.K_RIGHT] and self.pos_x <= W - w_tank: 
             self.pos_x += 1
         
-    def shoot(self,screen):
+    def shoot(self):
         
         teclas = pg.key.get_pressed()
         if teclas[pg.K_SPACE]:
-            self.pos_ammo += self.ammo_v
-            pg.draw.rect(screen,NEGRO, (self.pos_x, self.pos_ammo, 10,10))
-            self.pos_ammo = self.pos_y
+            shot = Ammo(self.pos_x, self.pos_y)
+            shot.shot()
 
 
     
-        
+class Ammo():
+    def __init__(self, pos_x, pos_y):
+        self.pos_x = pos_x
+        self.pos_y = pos_y
+        self.vx = 1
+        self.vy = 1
+    def shot(self):
+               self.pos_y += self.vy
+               pg.draw.rect(screenGame,NEGRO, (self.pos_x, self.pos_y, 10,10))
+               
